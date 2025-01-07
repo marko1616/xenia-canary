@@ -1401,7 +1401,8 @@ void XexInfoCache::Init(XexModule* xexmod) {
     GetHeader()->version = CURRENT_INFOCACHE_VERSION;
 
   } else {
-    if (GetHeader()->version != CURRENT_INFOCACHE_VERSION) {
+    if (GetHeader() != nullptr &&
+        GetHeader()->version != CURRENT_INFOCACHE_VERSION) {
       this->executable_addr_flags_->Close();
       std::filesystem::remove(infocache_path);
       try_open();
